@@ -1,75 +1,118 @@
-import { Image } from 'expo-image';
-import { Platform, StyleSheet } from 'react-native';
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
+import React from "react";
+import TarjetaRoja from "@/components/TarjetaRoja";
+import { Feather } from "@expo/vector-icons";
+import { SafeAreaView } from "react-native-safe-area-context";
+import SettingsButton from "@/components/SettingsButton";
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function HomeScreen() {
+const HomeScreen = () => {
+  const [settingsVisible, setSettingsVisible] = React.useState(false);
+  const handleSettingPress = () => {
+    setSettingsVisible(!settingsVisible);
+  };
   return (
-    <ParallaxScrollView
-      headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-      headerImage={
-        <Image
-          source={require('@/assets/images/partial-react-logo.png')}
-          style={styles.reactLogo}
-        />
-      }>
-      <ThemedView style={styles.titleContainer}>
-        <ThemedText type="title">Welcome!</ThemedText>
-        <HelloWave />
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-        <ThemedText>
-          Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-          Press{' '}
-          <ThemedText type="defaultSemiBold">
-            {Platform.select({
-              ios: 'cmd + d',
-              android: 'cmd + m',
-              web: 'F12',
-            })}
-          </ThemedText>{' '}
-          to open developer tools.
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-        <ThemedText>
-          {`Tap the Explore tab to learn more about what's included in this starter app.`}
-        </ThemedText>
-      </ThemedView>
-      <ThemedView style={styles.stepContainer}>
-        <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-        <ThemedText>
-          {`When you're ready, run `}
-          <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-          <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-          <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-        </ThemedText>
-      </ThemedView>
-    </ParallaxScrollView>
+    <ScrollView
+      style={styles.container}
+      contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
+    >
+      <Image
+        source={require("@/assets/images/shield.png")}
+        style={styles.bodyImg}
+      />
+      <View style={styles.headerContainer}>
+        <Text style={styles.welcomeText}>Bienvendio!</Text>
+
+        <Text style={styles.infoText}>
+          Conozca sus derechos durante una emergencia!
+        </Text>
+      </View>
+      <View style={styles.cardWrapper}>
+        <TarjetaRoja></TarjetaRoja>
+      </View>
+      <View style={styles.informationContainer}>
+        <Text style={styles.informationTitle}>Informacion Importante</Text>
+        <Text style={styles.infoText}>
+          Para ver todos sus derechos, visite la seccion 'Sus Derechos'
+        </Text>
+      </View>
+      <View
+        style={{
+          justifyContent: "center",
+          alignItems: "center",
+          flexDirection: "row",
+          padding: 24,
+          marginTop: 8,
+          gap: 8,
+        }}
+      >
+        <Feather name="alert-triangle" size={24} color="#B91C1C" />
+        <Text
+          style={{
+            fontSize: 12,
+            color: "#4b5563",
+            lineHeight: 24,
+            fontFamily: "Montserrat_400Regular",
+          }}
+        >
+          Esta information es sola educativa y no representa un aviso legal
+        </Text>
+      </View>
+    </ScrollView>
   );
-}
+};
+
+export default HomeScreen;
 
 const styles = StyleSheet.create({
-  titleContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    gap: 8,
+  container: {
+    flex: 1,
+    padding: 16,
+    backgroundColor: "#FAF3E0",
   },
-  stepContainer: {
-    gap: 8,
+  headerContainer: {
+    padding: 24,
+    paddingTop: 72,
+  },
+  welcomeText: {
+    fontSize: 28,
+    color: "#1F2937",
     marginBottom: 8,
+    fontFamily: "Montserrat_700Bold",
   },
-  reactLogo: {
-    height: 178,
-    width: 290,
-    bottom: 0,
-    left: 0,
-    position: 'absolute',
+  bodyImg: {
+    position: "absolute",
+
+    right: 100,
+
+    resizeMode: "contain",
+    opacity: 0.06,
+  },
+  infoText: {
+    fontSize: 20,
+    color: "#4b5563",
+    lineHeight: 24,
+    fontFamily: "Montserrat_400Regular",
+  },
+  cardWrapper: {
+    alignItems: "center",
+    justifyContent: "center",
+    padding: 16,
+    marginVertical: 16,
+  },
+  informationContainer: {
+    padding: 24,
+    marginTop: 8,
+  },
+  informationTitle: {
+    fontSize: 20,
+    color: "#1F2937",
+    marginBottom: 8,
+    fontFamily: "Montserrat_700Bold",
+  },
+  infoTitle: {
+    fontSize: 16,
+    color: "#4B5563",
+    marginBottom: 16,
+    lineHeight: 24,
   },
 });

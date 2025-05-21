@@ -1,29 +1,33 @@
-import { Link, Stack } from 'expo-router';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, Text, View } from "react-native";
+import React from "react";
+import { Link, Stack } from "expo-router";
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-
-export default function NotFoundScreen() {
+const NotFound = () => {
   return (
     <>
-      <Stack.Screen options={{ title: 'Oops!' }} />
-      <ThemedView style={styles.container}>
-        <ThemedText type="title">This screen does not exist.</ThemedText>
+      <Stack.Screen options={{ title: "Oops!" }} />
+      <View style={styles.container}>
+        <Text style={styles.text}>You reached an unexisting page</Text>
         <Link href="/" style={styles.link}>
-          <ThemedText type="link">Go to home screen!</ThemedText>
+          <Text>Go back to the home screen</Text>
         </Link>
-      </ThemedView>
+      </View>
     </>
   );
-}
+};
+
+export default NotFound;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     padding: 20,
+  },
+  text: {
+    fontSize: 20,
+    fontWeight: "600",
   },
   link: {
     marginTop: 15,
