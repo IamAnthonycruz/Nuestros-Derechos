@@ -10,10 +10,15 @@ import { useRef, useEffect } from "react";
 import { MaterialIcons } from "@expo/vector-icons";
 import * as Speech from "expo-speech";
 export default function TarjetaRojaCard() {
-  const sayText = `I do not wish to speak with you, answer your questions, or sign or hand you any documents based on my 5th Amendment rights under the United States Constitution.
-I do not give you permission to enter or search my home based on my 4th Amendment rights under the United States Constitution unless you show me a warrant to enter that is signed by a judge or magistrate.
-I do not give you permission to search any of my belongings based on my 4th Amendment rights under the United States Constitution.
-I choose to exercise my constitutional rights.`;
+  const sayText = `I do not wish to speak with you, answer your questions, or sign
+                or hand you any documents based on my 5th Amendment rights under
+                the United States Constitution. I do not give you permission to enter my home based on my 4th
+                Amendment rights under the United States Constitution unless you
+                have a warrant to enter, signed by a judge or magistrate with my
+                name on it that you slide through the door. I do not give you
+                permission to search any of my belongings based on my 4th
+                Amendment rights. I choose to exercise my constitutional rights.
+                `;
 
   const speak = () => {
     Speech.speak(sayText, {

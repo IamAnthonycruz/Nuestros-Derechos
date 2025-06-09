@@ -21,11 +21,6 @@ export default function SettingsScreen() {
       style={styles.container}
       contentContainerStyle={styles.contentContainer}
     >
-      <Image
-        source={require("@/assets/images/shield.png")}
-        style={styles.bodyImg}
-      />
-
       <View style={styles.headerContainer}>
         <Text style={styles.title}>Ajustes</Text>
       </View>

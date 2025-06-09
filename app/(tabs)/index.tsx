@@ -2,8 +2,6 @@ import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 import React from "react";
 import TarjetaRoja from "@/components/TarjetaRoja";
 import { Feather } from "@expo/vector-icons";
-import { SafeAreaView } from "react-native-safe-area-context";
-import SettingsButton from "@/components/SettingsButton";
 
 const HomeScreen = () => {
   const [settingsVisible, setSettingsVisible] = React.useState(false);
@@ -16,13 +14,13 @@ const HomeScreen = () => {
       contentContainerStyle={{ flexGrow: 1, paddingBottom: 20 }}
     >
       <Image
-        source={require("@/assets/images/shield.png")}
+        source={require("@/assets/images/LogoFinal.png")}
         style={styles.bodyImg}
       />
       <View style={styles.headerContainer}>
         <Text style={styles.welcomeText}>Bienvendio!</Text>
 
-        <Text style={styles.infoText}>
+        <Text style={styles.infoTextHeader}>
           Conozca sus derechos durante una emergencia!
         </Text>
       </View>
@@ -37,18 +35,17 @@ const HomeScreen = () => {
       </View>
       <View
         style={{
-          justifyContent: "center",
-          alignItems: "center",
           flexDirection: "row",
-          padding: 24,
-          marginTop: 8,
+          alignItems: "center",
+          marginTop: 15,
+          marginHorizontal: 24,
           gap: 8,
         }}
       >
         <Feather name="alert-triangle" size={24} color="#B91C1C" />
         <Text
           style={{
-            fontSize: 12,
+            fontSize: 15,
             color: "#4b5563",
             lineHeight: 24,
             fontFamily: "Montserrat_400Regular",
@@ -81,17 +78,26 @@ const styles = StyleSheet.create({
   },
   bodyImg: {
     position: "absolute",
-
-    right: 100,
-
-    resizeMode: "contain",
-    opacity: 0.06,
+    alignSelf: "center",
+    resizeMode: "cover",
+    width: 400,
+    height: 400,
+    opacity: 0.1,
+    top: -50,
+  },
+  infoTextHeader: {
+    fontSize: 20,
+    color: "#4b5563",
+    lineHeight: 24,
+    fontFamily: "Montserrat_400Regular",
+    textAlign: "left",
   },
   infoText: {
     fontSize: 20,
     color: "#4b5563",
     lineHeight: 24,
     fontFamily: "Montserrat_400Regular",
+    textAlign: "center",
   },
   cardWrapper: {
     alignItems: "center",
@@ -102,17 +108,21 @@ const styles = StyleSheet.create({
   informationContainer: {
     padding: 24,
     marginTop: 8,
+    alignContent: "center",
+    justifyContent: "center",
   },
   informationTitle: {
     fontSize: 20,
     color: "#1F2937",
     marginBottom: 8,
     fontFamily: "Montserrat_700Bold",
+    textAlign: "center",
   },
   infoTitle: {
-    fontSize: 16,
+    fontSize: 20,
     color: "#4B5563",
     marginBottom: 16,
     lineHeight: 24,
+    textAlign: "center",
   },
 });

@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   },
   bodyImg: {
     position: "absolute",
-    right: 100,
+    alignSelf: "center",
     opacity: 0.06,
   },
 });

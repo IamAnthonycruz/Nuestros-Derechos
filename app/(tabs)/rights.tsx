@@ -28,6 +28,17 @@ const Rights = () => {
             rightValue={right.description}
           />
         ))}
+        <View style={styles.footerContainer}>
+          <Text style={styles.footerText}>
+            Information summarized from{"\n"}
+            <Text style={styles.footerLink}>
+              “5 Rights of Undocumented Immigrants.” Family Law Attorney
+              Kennewick Clearwater Law Group, Clearwater Law Group, 27 Apr.
+              2022,
+              clearwaterlawgrouptricities.com/5-rights-of-undocumented-immigrants/.{" "}
+            </Text>
+          </Text>
+        </View>
       </View>
     </ScrollView>
   );
@@ -62,7 +73,27 @@ const styles = StyleSheet.create({
   },
   bodyImg: {
     position: "absolute",
-    right: 100,
+    alignSelf: "center",
     opacity: 0.06,
+  },
+  footerContainer: {
+    padding: 14,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  footerText: {
+    fontSize: 15,
+    color: "#B91C1C",
+    lineHeight: 24,
+    fontFamily: "Montserrat_400Regular",
+    textAlign: "center",
+  },
+  footerLink: {
+    fontSize: 15,
+    color: "black",
+    lineHeight: 24,
+    fontFamily: "Montserrat_400Regular",
+    textDecorationLine: "underline",
+    textAlign: "center",
   },
 });

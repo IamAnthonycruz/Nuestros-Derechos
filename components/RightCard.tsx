@@ -31,6 +31,7 @@ const styles = StyleSheet.create({
     padding: 16,
     borderRadius: 20,
     maxWidth: "90%",
+
     alignContent: "center",
     marginVertical: 20,
   },
@@ -47,11 +48,12 @@ const styles = StyleSheet.create({
     fontFamily: "Montserrat_700Bold",
   },
   rightValue: {
-    fontSize: 16,
+    fontSize: 15,
     lineHeight: 24,
     color: "#4b5563",
     fontFamily: "Montserrat_400Regular",
     maxHeight: 600,
-    paddingBottom: 10,
+
+    marginBottom: 30,
   },
 });
