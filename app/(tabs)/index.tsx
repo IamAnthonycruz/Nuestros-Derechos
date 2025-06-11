@@ -1,7 +1,7 @@
-import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
-import React from "react";
 import TarjetaRoja from "@/components/TarjetaRoja";
 import { Feather } from "@expo/vector-icons";
+import React from "react";
+import { Image, ScrollView, StyleSheet, Text, View } from "react-native";
 
 const HomeScreen = () => {
   const [settingsVisible, setSettingsVisible] = React.useState(false);
@@ -28,7 +28,7 @@ const HomeScreen = () => {
         <TarjetaRoja></TarjetaRoja>
       </View>
       <View style={styles.informationContainer}>
-        <Text style={styles.informationTitle}>Informacion Importante</Text>
+        <Text style={styles.informationTitle}>Informacion Importante!</Text>
         <Text style={styles.infoText}>
           Para ver todos sus derechos, visite la seccion 'Sus Derechos'
         </Text>
@@ -38,6 +38,7 @@ const HomeScreen = () => {
           flexDirection: "row",
           alignItems: "center",
           marginTop: 15,
+          marginBottom: 20,
           marginHorizontal: 24,
           gap: 8,
         }}
