@@ -9,17 +9,18 @@ import {
 } from "@expo-google-fonts/montserrat";
 import { useEffect } from "react";
 import { FontAwesome5 } from "@expo/vector-icons";
-
-// Prevent splash screen from auto-hiding
+import { useTheme } from "@/theme/ThemeContext";
 
 export default function TabLayout() {
-  // Hide splash screen once fonts are loaded
   SplashScreen.preventAutoHideAsync();
+  const theme = useTheme();
+
   const [fontsLoaded, fontError] = useFonts({
     Montserrat_400Regular,
     Montserrat_700Bold,
     Montserrat_600SemiBold,
   });
+
   useEffect(() => {
     if (fontsLoaded || fontError) {
       SplashScreen.hideAsync();
@@ -29,24 +30,31 @@ export default function TabLayout() {
   if (!fontsLoaded && !fontError) {
     return null;
   }
+
   return (
-    <SafeAreaProvider style={{ backgroundColor: "#FAF3E0" }}>
+    <SafeAreaProvider style={{ backgroundColor: theme.background }}>
       <Tabs
         screenOptions={{
-          tabBarActiveTintColor: "#B91C1C",
-          tabBarInactiveTintColor: "#737373",
+          tabBarActiveTintColor: theme.icon,
+          tabBarInactiveTintColor: theme.textSecondary,
           tabBarStyle: {
-            backgroundColor: "#FAF3E0",
-            borderTopColor: "#E5E7EB",
-            borderRadius: 30,
-            height: 80,
-            paddingBottom: 10,
-            paddingTop: 10,
+            borderRadius: 50,
+            marginHorizontal: 20,
+            marginBottom: 20,
+            elevation: 4,
+            height: 75,
+            backgroundColor: theme.card,
+            position: "absolute",
+            left: 0,
+            right: 0,
+            bottom: 0,
           },
           tabBarLabelStyle: {
             fontSize: 12,
-            fontFamily: "Montserrat_400Regular", // Montserrat_600SemiBold",
-            color: "black",
+            fontFamily: "Montserrat_400Regular",
+          },
+          tabBarIconStyle: {
+            marginTop: 5,
           },
           headerShown: false,
         }}
@@ -70,6 +78,15 @@ export default function TabLayout() {
           }}
         />
         <Tabs.Screen
+          name="quiz"
+          options={{
+            title: "Cuestionario",
+            tabBarIcon: ({ color }) => (
+              <Feather name="book" size={24} color={color} />
+            ),
+          }}
+        />
+        <Tabs.Screen
           name="contacts"
           options={{
             title: "Recursos",
@@ -81,7 +98,8 @@ export default function TabLayout() {
         <Tabs.Screen
           name="settings"
           options={{
-            title: "Ajustes",
+            href: null,
+            title: "",
             tabBarIcon: ({ color }) => (
               <Feather name="settings" size={24} color={color} />
             ),
