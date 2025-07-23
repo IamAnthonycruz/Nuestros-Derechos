@@ -16,6 +16,12 @@
     }
   },
   "submit": {
-    "production": {}
+    "production": {
+      "ios": {
+        "appleId": "Cruzito1224@gmail.com",
+        "ascAppId": "6747153493",
+        "appleTeamId": "7Q88A58365"
+      }
+    }
   }
 }

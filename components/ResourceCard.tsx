@@ -1,3 +1,4 @@
+import React from "react";
 import {
   Linking,
   StyleSheet,
@@ -5,8 +6,9 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import React from "react";
 import { AntDesign } from "@expo/vector-icons";
+import { useTheme } from "@/theme/ThemeContext";
+
 const ResourceCard = ({
   title,
   description,
@@ -16,6 +18,8 @@ const ResourceCard = ({
   description: string;
   url: string;
 }) => {
+  const theme = useTheme();
+
   const handlePress = async () => {
     const supported = await Linking.canOpenURL(url);
     if (supported) {
@@ -24,18 +28,29 @@ const ResourceCard = ({
       console.warn(`No se puede abrir este enlace ${url}`);
     }
   };
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: theme.card,
+          shadowColor: theme.textSecondary,
+        },
+      ]}
+    >
       <View style={styles.textContainer}>
-        <Text style={styles.cardTitle}>{title}</Text>
-        <Text style={styles.cardDescription}>{description}</Text>
+        <Text style={[styles.cardTitle, { color: theme.textPrimary }]}>
+          {title}
+        </Text>
+        <Text style={[styles.cardDescription, { color: theme.textSecondary }]}>
+          {description}
+        </Text>
       </View>
       <View style={styles.linkContainer}>
-        <View>
-          <AntDesign name="link" size={24} color="#B91C1C" />
-        </View>
+        <AntDesign name="link" size={24} color={theme.icon} />
         <TouchableOpacity style={styles.touchText} onPress={handlePress}>
-          <Text style={styles.linkText}>{url}</Text>
+          <Text style={[styles.linkText, { color: theme.link }]}>{url}</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -47,13 +62,17 @@ export default ResourceCard;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#fff", // overridden by theme
     alignItems: "center",
     justifyContent: "center",
     padding: 16,
     marginVertical: 8,
     borderRadius: 30,
     maxWidth: "90%",
+    shadowOpacity: 0.06,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    elevation: 3,
   },
   cardTitle: {
     fontSize: 20,
@@ -73,12 +92,14 @@ const styles = StyleSheet.create({
   linkContainer: {
     flexDirection: "row",
     justifyContent: "center",
+    alignItems: "center",
+    gap: 8,
   },
   linkText: {
     fontSize: 16,
     fontFamily: "Montserrat_400Regular",
     textDecorationLine: "underline",
-    color: "#2563EB",
+    color: "#2563EB", // overridden by theme
   },
   touchText: {
     paddingHorizontal: 10,

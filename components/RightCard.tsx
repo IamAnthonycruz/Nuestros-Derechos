@@ -1,6 +1,8 @@
-import { StyleSheet, Text, View } from "react-native";
 import React from "react";
+import { Linking, StyleSheet, Text, View } from "react-native";
 import { Feather } from "@expo/vector-icons";
+import { useTheme } from "@/theme/ThemeContext";
+
 const RightCard = ({
   rightTitle,
   rightValue,
@@ -8,14 +10,54 @@ const RightCard = ({
   rightTitle: string;
   rightValue: string;
 }) => {
+  const theme = useTheme();
+
   return (
-    <View style={styles.container}>
-      <View>
-        <Feather name="file-text" size={30} color="#B91C1C" />
+    <View
+      style={[
+        styles.container,
+        {
+          backgroundColor: theme.card,
+          shadowColor: theme.textSecondary,
+        },
+      ]}
+    >
+      <View style={styles.topRow}>
+        <Feather
+          name="file-text"
+          size={28}
+          color={theme.icon}
+          style={styles.icon}
+        />
+        <Text style={[styles.rightTitle, { color: theme.textPrimary }]}>
+          {rightTitle}
+        </Text>
       </View>
-      <View style={styles.rightContainer}>
-        <Text style={styles.rightTitle}>{rightTitle}</Text>
-        <Text style={styles.rightValue}>{rightValue}</Text>
+
+      <Text style={[styles.rightValue, { color: theme.textSecondary }]}>
+        {rightValue}
+      </Text>
+
+      <View style={[styles.footerContainer, { borderTopColor: theme.border }]}>
+        <Text style={[styles.footerText, { color: theme.textSecondary }]}>
+          Información resumida de:{" "}
+          <Text
+            style={[styles.footerLink, { color: theme.link }]}
+            onPress={() =>
+              Linking.openURL(
+                "https://clearwaterlawgrouptricities.com/5-rights-of-undocumented-immigrants/"
+              )
+            }
+          >
+            Clearwater Law Group
+          </Text>
+        </Text>
+      </View>
+
+      <View style={{ alignItems: "center", marginTop: 8 }}>
+        <Text style={[styles.footerText, { color: theme.textSecondary }]}>
+          Deslice en cualquier direction para ver mas derechos
+        </Text>
       </View>
     </View>
   );
@@ -25,35 +67,47 @@ export default RightCard;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "white",
-    padding: 16,
     borderRadius: 20,
-    maxWidth: "90%",
-
-    alignContent: "center",
-    marginVertical: 20,
+    padding: 20,
+    marginVertical: 16,
+    marginHorizontal: 10,
+    shadowOpacity: 0.06,
+    shadowOffset: { width: 0, height: 4 },
+    shadowRadius: 10,
+    elevation: 3,
+    width: "100%",
+    alignSelf: "center",
   },
-  rightContainer: {
-    flex: 1,
-    paddingVertical: 16,
-    paddingHorizontal: 16,
+  topRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 12,
+  },
+  icon: {
+    marginRight: 10,
   },
   rightTitle: {
     fontSize: 20,
-    fontWeight: "600",
-    marginBottom: 8,
-    color: "#1F2937",
     fontFamily: "Montserrat_700Bold",
+    flexShrink: 1,
   },
   rightValue: {
-    fontSize: 15,
+    fontSize: 16,
     lineHeight: 24,
-    color: "#4b5563",
     fontFamily: "Montserrat_400Regular",
-    maxHeight: 600,
-
-    marginBottom: 30,
+    marginBottom: 20,
+    width: "100%",
+  },
+  footerContainer: {
+    borderTopWidth: 1,
+    paddingTop: 12,
+  },
+  footerText: {
+    fontSize: 14,
+    textAlign: "center",
+    fontFamily: "Montserrat_400Regular",
+  },
+  footerLink: {
+    textDecorationLine: "underline",
   },
 });
